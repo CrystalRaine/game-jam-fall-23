@@ -20,8 +20,11 @@ export default function Home() {
         <button className='tutorialButton'>
           Tutorial
         </button>
-
-
+        <p>
+          Username:
+        </p>
+        <input>
+        </input>
       </div>
     );
   }
