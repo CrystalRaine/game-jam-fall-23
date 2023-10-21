@@ -18,4 +18,9 @@
     font-size: 40px;
     width:200px;
     height:50px;
+    margin-left: 5px;
+}
+
+h3 {
+    font-size: 45px;
 }

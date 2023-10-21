@@ -22,16 +22,18 @@ export default function Tutorial(){
     function playBach() {
         new Audio(bach).play();
     }
+    /*
     function playMusic() {
         new Audio(chopin).play();
     }
+    */
 
     const handler = (event) => {
         if (event.key === 'b') {
             playBach();
         }
         else if(event.key === 'c') {
-            playMusic();
+            //playMusic();
         }
     }
     function goToMenu(){
@@ -41,8 +43,8 @@ export default function Tutorial(){
     return (<div className="tutorialScreen"  onKeyDown={handler}>
         
         <h2>Tutorial</h2>
-        {playMusic}
-        <h3>Push the buttons to attack. Don't lose</h3>
+        
+        <h3>Push the buttons to attack. Don't lose.</h3>
         <button onClick={goToMenu} className='backButton'>Back</button>
         <button
         onClick={playHit} className='hitSoundButton'>Hit Sound</button>
