@@ -25,7 +25,10 @@ export default function Home() {
         display: 'flex',
         alignItems: 'baseline',
         justifyContent: 'space-around',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        rowgap: 10,
+        columngap: 2,
+        position: 'realitive'
     }}>
         
         <title>Clubbing Clubs Club</title>
