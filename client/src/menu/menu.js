@@ -27,7 +27,7 @@ export default function Home() {
         justifyContent: 'space-around',
         flexDirection: 'column'
     }}>
-        
+        {playJazz()}
         <title>Clubbing Clubs Club</title>
         <h2>Menu</h2>
         <button>
