@@ -36,8 +36,7 @@ app.use(sessions({
 }));
 
 app.get("/test", (req, res)=>{
-    console.log("Test");
-    res.send("Test");
+    res.send(JSON.stringify({"test":"Test"}));
 });
 
 // start app
