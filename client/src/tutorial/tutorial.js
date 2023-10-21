@@ -22,7 +22,7 @@ export default function Tutorial(){
     
     const [play, { stop }] = useSound(
         chopin,
-        { volume: 1}
+        {volume: 1}
     );
     
     
@@ -32,7 +32,7 @@ export default function Tutorial(){
         navigate("http://localhost:3000/");
     }
 
-    return (<div className="tutorialScreen" onMouseEnter={() => {play();}}>
+    return (<div className="tutorialScreen" onMouseEnter={() => {stop(); play();}}>
         
         <h2>Tutorial</h2>
         <h3>Push the buttons to attack. Don't lose</h3>
