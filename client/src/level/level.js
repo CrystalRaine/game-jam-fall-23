@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./level.css";
 
+
 export default function Level({gameWS, setGameWS, username}){
 
     const [p1x, setp1x] = useState(0);
