@@ -21,6 +21,10 @@ export default function Home({setUsername}) {
       setUsername(uf.value);
       navigate("/loading");
     }
+
+    function goToTutorial(){
+      navigate("/tutorial");
+    }
   
 
     // const play = ()=>{
@@ -33,16 +37,14 @@ export default function Home({setUsername}) {
         
         <title>Clubbing Clubs Club</title>
         <h2>Menu</h2>
-        <button>
-        <a href="http://localhost:3000/tutorial">Tutorial</a>
-        </button>
-        <label>
+        <button onClick={goToTutorial} className='tutorialButton'>Tutorial</button>
+        <p>
           Username:
-        <input id='usernameField'>
-          </input>
-          <button onClick={setUser} className='startButton'>_Start_</button>
-        </label>
-
+        </p>
+        <div>
+          <input id='usernameField'></input>
+          <button onClick={setUser} className='startButton'>Start</button>
+        </div>
       </div>
     );
   }
