@@ -64,25 +64,46 @@ function setupGameWS(){
 
                     console.log("P1: " + player1Info.username);
                     console.log("P2: " + player2Info.username);
+
+                    setInterval(()=>{
+                        player1Info.position.y += 1;
+                        player2Info.position.y += 1;
+
+                        if(player1Info.position.y > 400){
+                            player1Info.position.y = 400;
+                        }
+                        if(player2Info.position.y > 400){
+                            player2Info.position.y = 400;
+                        }
+
+                        if(player1Info.position.x < 0){
+                            player1Info.position.x = 0;
+                        }
+                        if(player2Info.position.x < 0){
+                            player2Info.position.x = 0;
+                        }
+
+                        if(player1Info.ws != null && player2Info.ws != null){
+                            player1Info.ws.send(JSON.stringify({p2: player2Info.position, p1: player1Info.position}));
+                            player2Info.ws.send(JSON.stringify({p2: player1Info.position, p1: player2Info.position}));  
+                        } else {
+                            if(player1Info.ws != null){
+                                player1Info.ws.send("missing player");
+                            }
+                            if(player2Info.ws != null){
+                                player2Info.ws.send("missing player");
+                            }
+                        }
+                    }, 1000/60);
+
+
                 break;
                 case "input":
                     console.log("input sent");
-                    
+
                     var player = getPlayerByUsername(message.username);
                     player.position.x = message.posX;
                     player.position.y = message.posY;
-
-                    if(player1Info.ws != null && player2Info.ws != null){
-                        player1Info.ws.send(JSON.stringify(player2Info.position));
-                        player2Info.ws.send(JSON.stringify(player1Info.position));  
-                    } else {
-                        if(player1Info.ws != null){
-                            player1Info.ws.send("missing player");
-                        }
-                        if(player2Info.ws != null){
-                            player2Info.ws.send("missing player");
-                        }
-                    }
                 break;
             }
         });
