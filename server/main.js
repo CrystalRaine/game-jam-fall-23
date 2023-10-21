@@ -5,10 +5,6 @@ const engines = require('consolidate');
 const sessions = require('express-session');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const { addDeckEndpoints } = require('./deckEndpoints.js');
-const { addAccountEndpoints } = require('./accountEndpoints.js');
-const { addLobbyEndpoints } = require('./lobbyEndpoints.js');
-const { setupGameWS } = require('./gameWebsocket.js');
 
 // variables
 const publicDir = path.join(__dirname, '../client/build')
@@ -39,10 +35,12 @@ app.use(sessions({
     resave: false 
 }));
 
+app.get("/test", (req, res)=>{
+    console.log("Test");
+    res.send("Test");
+});
+
 // start app
 app.listen(port, ()=>{
     console.log("the server has been started on " + port);
 });
-
-
-setupGameWS();
