@@ -2,6 +2,7 @@ import React from 'react';
 import "./menu.css";
 import { useNavigate } from "react-router-dom";
 import jazz from '../sound/MainJazz.mp3';
+import Button from '../sound/Button.mp3';
 
 
 export default function Home({setUsername}) {
@@ -23,6 +24,7 @@ export default function Home({setUsername}) {
     }
 
     function goToTutorial(){
+      new Audio(Button).play();        
       navigate("/tutorial");
     }
   
