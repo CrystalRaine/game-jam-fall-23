@@ -9,7 +9,7 @@ const boundingXMin = 0;
 const boundingYMax = 600;
 const boundingYMin = 200;
 
-const attackRange = 30;
+const attackRange = 100;
 
 var player1Info = {
     username: null,
@@ -171,7 +171,6 @@ function setupGameWS(){
                         }
                     }, 1000/60);
 
-
                 break;
                 case "input":
                     var player = getPlayerByUsername(message.username);
@@ -189,13 +188,23 @@ function setupGameWS(){
                         var opp = getOpponentByUsername(message.username);
                         // damage opponent
 
-                        opp.hp -=10;
-
                         if(message.direction == -1){
                             // left
+                            if(opp.position.x > player.position.x - attackRange && opp.position.x < player.position.x){
+                                if(opp.position.y > player.position.y - (attackRange / 2) && opp.position.y < player.position.y + (attackRange / 2)){
+                                    // opponent is in attack hitbox
+                                    opp.hp -=10;
+                                }
+                            }
                         }
                         if(message.direction == 1){
                             // right
+                            if(opp.position.x < player.position.x + attackRange && opp.position.x > player.position.x){
+                                if(opp.position.y > player.position.y - (attackRange / 2) && opp.position.y < player.position.y + (attackRange / 2)){
+                                    // opponent is in attack hitbox
+                                    opp.hp -=10;
+                                }
+                            }
                         }
                     }
                 break;

@@ -2,7 +2,7 @@
 
 .home{
     display: 'flex';
-    width: 1000px;
+    width: 650px;
     margin:auto;
     margin-left: 20%;
     margin-top: 0%;
@@ -38,7 +38,7 @@ p{
     background-color: blueviolet;
     font-size: 40px;
     width:200px;
-    height:50px;
+    height:100%;
     margin: 0;
     margin-left: 5px;
 }
