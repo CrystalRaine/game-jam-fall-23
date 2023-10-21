@@ -3,3 +3,11 @@
   width: 100%;
   background-color: blue;
 }
+
+.header{
+  height: 10px;
+  width: 100%;
+  background-color: black;
+  color: purple;
+  
+}
