@@ -1,33 +1,41 @@
-.tutorialButton{
-    background-color: blueviolet;
-    
-}
+
 
 .home{
     display: 'flex';
-    alignItems: 'baseline';
-    justifyContent: 'space-around';
-    flexDirection: 'column';
-    rowgap: 10;
-    columngap: 2;
-    position: 'realitive';
-    width: 290px;
+    width: 1000px;
     margin:auto;
     margin-left: 20%;
-    margin-top: 10%;
+    margin-top: 0%;
 
 }
 
 h2{
-    font-size: 60px;
+    font-size: 80px;
 }
 
-.startButton{
-    width:80px;
-    height:30px;
+.tutorialButton{
+    background-color: blueviolet;
+    font-size: 40px;
+    width:200px;
+    height:50px;
+}
+
+p{
+    font-size: 35px;
+    margin-bottom: 0px;
 }
 
 #usernameField{
+    width:400px;
+    height:50px;
+    margin: 0px;
+}
+
+.startButton{
+    background-color: blueviolet;
+    font-size: 40px;
     width:200px;
-    height:25px;
+    height:50px;
+    margin: 0;
+    margin-left: 5px;
 }
