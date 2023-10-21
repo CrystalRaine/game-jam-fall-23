@@ -1,5 +1,26 @@
-.tutorialScreen {
-    height: 100%;
-    width: 100%;
-    background-color: aqua;
+.tutorialScreen{
+    display: 'flex';
+    width: 1000px;
+    margin:auto;
+    margin-left: 20%;
+    margin-top: 0%;
+}
+
+.backButton{
+    background-color: blueviolet;
+    font-size: 40px;
+    width:200px;
+    height:50px;
+}
+
+.hitSoundButton{
+    background-color: blueviolet;
+    font-size: 40px;
+    width:200px;
+    height:50px;
+    margin-left: 5px;
+}
+
+h3 {
+    font-size: 45px;
 }

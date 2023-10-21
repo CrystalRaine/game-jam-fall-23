@@ -20,6 +20,8 @@ export default function Tutorial(){
         new Audio(chopin).play();
     }
     
+
+    
     return (<div className="tutorialScreen">
         {playMusic()}
         <h2>Tutorial</h2>
