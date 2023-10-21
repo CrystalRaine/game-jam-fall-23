@@ -8,6 +8,7 @@ var player1Info = {
         x:0,
         y:0,
     },
+    hp: 100,
 }
 var player2Info = {
     username: null,
@@ -17,6 +18,7 @@ var player2Info = {
         x:0,
         y:0,
     },
+    hp: 100,
 }
 
 function startGameEndpoints(app){
@@ -65,6 +67,7 @@ function setupGameWS(){
                 break;
                 case "input":
                     console.log("input sent");
+                    
                     var player = getPlayerByUsername(message.username);
                     player.position.x = message.posX;
                     player.position.y = message.posY;
