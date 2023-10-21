@@ -1,17 +1,45 @@
 import { useState, useEffect } from "react";
-import {join} from "../utility/serverReq.js";
+import { join } from "../utility/serverReq.js";
+var W3CWebSocket = require('websocket').w3cwebsocket;
 
-export default function Loading(){
+export default function Loading({gameWS, setGameWS}){
     const [val, setVal] = useState("");
-    useEffect(()=>{
+    
+    async function connect(){
+        const client = new W3CWebSocket('ws://localhost:8000/ws');
+
+        client.onopen = () => {
+            console.log('WebSocket Client Connected');
+        };
+
+        client.onmessage = (message) => {
+            var data = message.data;
+            console.log(data);
+        };
+        client.onerror = function() {
+            console.log('Connection Error');
+        };
+
+        setGameWS(client);
+    };
+
+    function readyWebsocket(){
+        console.log("ready");
+        gameWS.send(JSON.stringify({type:"ready"}));
+    }
+
+    useEffect(function (){
         join((value)=>{
-            console.log(value);
             setVal(value);
         });
+
+        connect();
+
     }, []);
 
     return (<div className="loadingScreen">
         <h2>Loading</h2>
         <p>{val}</p>
+        <button onClick={readyWebsocket}>Ready up</button>
     </div>)
 }

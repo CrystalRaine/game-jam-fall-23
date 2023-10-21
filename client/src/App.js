@@ -12,6 +12,8 @@ import Lose from './lose/lose.js';
 import "./App.css";
 
 function App() {
+  const [ws, setWs] = useState(null);
+
   return (
     <div className='background'>
       <Header />
@@ -22,8 +24,8 @@ function App() {
             <Route exact path='/tutorial' element={<Tutorial/>}/>
           </Route>
 
-          <Route exact path='/loading' element={<Loading/>}>
-            <Route exact path='/loading' element={<Loading/>}/>
+          <Route exact path='/loading' element={<Loading gameWS={ws} setGameWS={setWs}/>}>
+            <Route exact path='/loading' element={<Loading gameWS={ws} setGameWS={setWs}/>}/>
           </Route>
 
           <Route exact path='/level' element={<Level/>}>
