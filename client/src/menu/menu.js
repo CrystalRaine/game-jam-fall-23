@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import jazz from '../sound/MainJazz.mp3';
 
 
-export default function Home() {
+export default function Home({setUsername}) {
     const navigate = useNavigate();
   
     const openLink = function(link){
@@ -14,6 +14,13 @@ export default function Home() {
     function playJazz() {
     new Audio(jazz).play();
     }
+
+    function setUser(){
+      var uf = document.getElementById("usernameField");
+      console.log(uf.value);
+      setUsername(uf.value);
+      navigate("/loading");
+    }
   
 
     // const play = ()=>{
@@ -21,29 +28,20 @@ export default function Home() {
     // }
   
     return(
-      <div className='home' style={{
-        display: 'flex',
-        alignItems: 'baseline',
-        justifyContent: 'space-around',
-        flexDirection: 'column',
-        rowgap: 10,
-        columngap: 2,
-        position: 'realitive'
-    }}>
+      <div className='home'>
         
         <title>Clubbing Clubs Club</title>
         <h2>Menu</h2>
         <button>
         <a href="http://localhost:3000/tutorial">Tutorial</a>
         </button>
-        <p>
+        <label>
           Username:
-        </p>
-        <input>
-        </input>
-        <button>
-        <a href="http://localhost:3000/loading">_Start_</a>
-        </button>
+        <input id='usernameField'>
+          </input>
+          <button onClick={setUser} className='startButton'>_Start_</button>
+        </label>
+
       </div>
     );
   }

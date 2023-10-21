@@ -44,7 +44,7 @@ function App() {
 
 
           {/* redirect to login for any non-given paths */}
-          <Route path='*' element={<Menu/>}/>
+          <Route path='*' element={<Menu setUsername={setUsername}/>}/>
         </Routes>
       </BrowserRouter>
     </div>

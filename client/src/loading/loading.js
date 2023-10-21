@@ -40,6 +40,7 @@ export default function Loading({gameWS, setGameWS, username}){
     return (<div className="loadingScreen">
         <h2>Loading</h2>
         <p>{val}</p>
+        <p>{username}</p>
         <button onClick={readyWebsocket}>Ready up</button>
     </div>)
 }

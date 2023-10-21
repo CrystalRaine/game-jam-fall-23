@@ -2,3 +2,32 @@
     background-color: blueviolet;
     
 }
+
+.home{
+    display: 'flex';
+    alignItems: 'baseline';
+    justifyContent: 'space-around';
+    flexDirection: 'column';
+    rowgap: 10;
+    columngap: 2;
+    position: 'realitive';
+    width: 290px;
+    margin:auto;
+    margin-left: 20%;
+    margin-top: 10%;
+
+}
+
+h2{
+    font-size: 60px;
+}
+
+.startButton{
+    width:80px;
+    height:30px;
+}
+
+#usernameField{
+    width:200px;
+    height:25px;
+}
