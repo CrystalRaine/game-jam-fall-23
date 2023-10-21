@@ -11,6 +11,8 @@ const boundingYMin = 200;
 
 const attackRange = 100;
 
+var periodicCall;
+
 var player1Info = {
     username: null,
     ws: null,
@@ -88,7 +90,7 @@ function setupGameWS(){
                     console.log("P1: " + player1Info.username);
                     console.log("P2: " + player2Info.username);
 
-                    setInterval(()=>{
+                    periodicCall = setInterval(()=>{
 
                         player1Info.attackDelay -= 1;
                         player2Info.attackDelay -= 1;
@@ -205,6 +207,9 @@ function setupGameWS(){
                                     opp.hp -=10;
                                 }
                             }
+                        }
+                        if(opp.hp <= 0 || player.hp <= 0){
+                            clearInterval(periodicCall);
                         }
                     }
                 break;

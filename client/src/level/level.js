@@ -3,6 +3,14 @@ import "./level.css";
 
 import { useNavigate } from "react-router-dom";
 
+// TODO: Attack varying damage
+// TODO: Attack knockback
+// TODO: Sprites
+// TODO: Background image
+// TODO: Attack Animation
+// TODO: fix character freezing 
+// TODO: Win screen / lose screen crash
+
 export default function Level({gameWS, setGameWS, username}){
     const navigate = useNavigate();
 
