@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import hit from '../sound/WoodHit.mp3';
 import "./tutorial.css";
 
-import bach from '../sound/Bach.mp3';
 import chopin from '../sound/Prelude.mp3';
 
 export default function Tutorial(){
@@ -10,18 +9,15 @@ export default function Tutorial(){
         new Audio(hit).play();
     }
     
-    const [state, setState] = useState(''); 
     
 
-    function playBach() {
-        new Audio(bach).play();
-    }
+    
     function playMusic() {
         new Audio(chopin).play();
     }
     
 
-    
+
     return (<div className="tutorialScreen">
         {playMusic()}
         <h2>Tutorial</h2>

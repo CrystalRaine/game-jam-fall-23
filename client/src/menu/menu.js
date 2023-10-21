@@ -43,7 +43,7 @@ export default function Home({setUsername}) {
           Username:
         </p>
         <div>
-          <input id='usernameField'></input>
+          <input id='usernameField' onClick={playJazz}></input>
           <button onClick={setUser} className='startButton'>Start</button>
         </div>
       </div>
