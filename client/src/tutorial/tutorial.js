@@ -35,7 +35,7 @@ export default function Tutorial(){
     return (<div className="tutorialScreen" onMouseEnter={() => {play();}}>
         
         <h2>Tutorial</h2>
-        <h3>Push the buttons to attack. Don't lose</h3>
+        <h3>Use the WASD keys to move. Use the left and right arrow keys to attack in that direction. Don't lose.</h3>
         <button onClick={goToMenu} className='backButton'>Back</button>
         <button
         onClick={playHit} className='backButton'>Hit Sound</button>
