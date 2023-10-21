@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+
 export default function Level({gameWS, setGameWS, username}){
 
     const [p1x, setp1x] = useState(0);
@@ -38,8 +39,8 @@ export default function Level({gameWS, setGameWS, username}){
     }, []);
 
     return (<div className="levelScreen" onKeyDown={handler}>
-        <div id="player1" className="player" style={{position: "absolute", left:p1x + 'px', top:p1y + 'px'}}>Player1</div>
-        <div id="player2" className="player" style={{position: "absolute", left:p2x + 'px', top:p2y + 'px'}}>Player2</div>
+        <div id="player1" className="player" style={{position: "absolute", left:p1x + 'px', top:p1y + 'px'}}>sandwich</div>
+        <div id="player2" className="player" style={{position: "absolute", left:p2x + 'px', top:p2y + 'px'}}>suit</div>
         <button autoFocus className="focusButton"></button>
     </div>)
 }
