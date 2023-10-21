@@ -1,13 +1,15 @@
 const WebSocket = require('ws');
 
 const jumpCount = 3;
-const attackDelay = 10;
+const attackDelay = 100;
 const speedCapX = 7;
 
 const boundingXMax = 1200;
 const boundingXMin = 0;
 const boundingYMax = 600;
 const boundingYMin = 200;
+
+const attackRange = 30;
 
 var player1Info = {
     username: null,
@@ -136,6 +138,7 @@ function setupGameWS(){
                             player2Info.momentum.y = 0;
                         }
 
+
                         if(player1Info.position.x < boundingXMin){
                             player1Info.position.x = boundingXMin;
                             player1Info.momentum.x = 0;
@@ -156,8 +159,8 @@ function setupGameWS(){
                         }
 
                         if(player1Info.ws != null && player2Info.ws != null){
-                            player1Info.ws.send(JSON.stringify({p2: player2Info, p1: player1Info}));
-                            player2Info.ws.send(JSON.stringify({p2: player1Info, p1: player2Info}));  
+                            player1Info.ws.send(JSON.stringify({p2: getSendableInfo(player2Info), p1: getSendableInfo(player1Info)}));
+                            player2Info.ws.send(JSON.stringify({p2: getSendableInfo(player1Info), p1: getSendableInfo(player2Info)}));  
                         } else {
                             if(player1Info.ws != null){
                                 player1Info.ws.send("missing player");
@@ -183,7 +186,17 @@ function setupGameWS(){
                     var player = getPlayerByUsername(message.username);
                     if(player.attackDelay <= 0){
                         player.attackDelay = attackDelay;
-                        getOpponentByUsername(message.username);
+                        var opp = getOpponentByUsername(message.username);
+                        // damage opponent
+
+                        opp.hp -=10;
+
+                        if(message.direction == -1){
+                            // left
+                        }
+                        if(message.direction == 1){
+                            // right
+                        }
                     }
                 break;
             }
@@ -221,5 +234,20 @@ function getOpponentByUsername(username){
     }
     return null;
 }
+
+function distance(x,y,x2,y2){
+    return Math.sqrt(((x-x2) * (x-x2)) + ((y-y2) * (y-y2)));
+}
+
+function getSendableInfo(player){
+    return{
+        position:player.position,
+        momentum:player.momentum,
+        username:player.username,
+        health:player.hp,
+        attackDelay:player.attackDelay,
+    }
+}
+
 
 module.exports = {startGameEndpoints, setupGameWS};
