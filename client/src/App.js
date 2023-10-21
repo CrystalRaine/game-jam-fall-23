@@ -18,6 +18,7 @@ function App() {
   
   return (
     <div className='background'>
+<<<<<<< Updated upstream
       <Header />
       <BrowserRouter>
         <Routes>
@@ -48,6 +49,9 @@ function App() {
           <Route path='*' element={<Menu setUsername={setUsername}/>}/>
         </Routes>
       </BrowserRouter>
+=======
+      <p>Something</p>
+>>>>>>> Stashed changes
     </div>
   );
 }
