@@ -1,9 +1,9 @@
 import React from 'react';
-import picture from './bubbles.jpg';
+import picture from './Graph.png';
 
 export default function Win(){
     var test = [];
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 3; i++) {
         test.push(<div><p>{i}</p></div>)
     }
     return (<div className="winScreen">
