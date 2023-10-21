@@ -2,6 +2,25 @@ const WebSocket = require('ws');
 
 var counter = 0;
 
+var player1Info = {
+    username: null,
+    ws: null,
+    ready: false,
+    position:{
+        x:0,
+        y:0,
+    },
+}
+var player2Info = {
+    username: null,
+    ws: null,
+    ready: false,
+    position:{
+        x:0,
+        y:0,
+    },
+}
+
 function startGameEndpoints(app){
     app.get("/test", (req, res)=>{
         res.send(JSON.stringify({"test":counter++}))
@@ -9,9 +28,6 @@ function startGameEndpoints(app){
 }
 
 function setupGameWS(){
-
-    var ws1 = null;
-
     const wss = new WebSocket.Server({ port: 8000 });
 
     wss.on('connection', (ws) => {
@@ -23,8 +39,26 @@ function setupGameWS(){
             console.log("a message was recieved: " + JSON.stringify(message));
             switch(message.type){
                 case "ready":
+                    var player = getPlayerByUsername(message.username);
+
+                    if(player == null){
+                        if(player1Info.username == null){
+                            player1Info.username = message.username;
+                            player1Info.ws = ws;
+                        } else if (player2Info.username == null){
+                            player2Info.username = username;
+                            player2Info.ws = ws;
+                        } else {
+                            ws.send("Lobby Full");
+                        }
+                    } else {
+                        // refresh the websocket
+                        player.ws = ws;
+                    }
+
                     console.log(counter);
-                    ws1.send(counter);
+                    if(player1Info.username != null) player1Info.ws.send(counter);
+                    if(player2Info.username != null) player2Info.ws.send(counter);
                 break;
             }
         });
@@ -32,13 +66,20 @@ function setupGameWS(){
         // Cleanup
         ws.on("close", () => {
         });
-
-        if(ws1 == null) ws1 = ws;
     });
 
     console.log("The websocket has been started on port 8000");
 
 }
 
+function getPlayerByUsername(username){
+    if(player1Info.username == username){
+        return player1Info;
+    } else if (player2Info.username = username){
+        return player2Info;
+    } else {
+        return null;
+    }
+}
 
 module.exports = {startGameEndpoints, setupGameWS};

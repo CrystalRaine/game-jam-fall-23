@@ -13,6 +13,7 @@ import "./App.css";
 
 function App() {
   const [ws, setWs] = useState(null);
+  const [username, setUsername] = useState(null);
 
   return (
     <div className='background'>
@@ -24,7 +25,7 @@ function App() {
             <Route exact path='/tutorial' element={<Tutorial/>}/>
           </Route>
 
-          <Route exact path='/loading' element={<Loading gameWS={ws} setGameWS={setWs}/>}>
+          <Route exact path='/loading' element={<Loading gameWS={ws} setGameWS={setWs} username={username}/>}>
             <Route exact path='/loading' element={<Loading gameWS={ws} setGameWS={setWs}/>}/>
           </Route>
 
