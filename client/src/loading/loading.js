@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
 import {join} from "../utility/serverReq.js";
 
-function joinGame(){
-    
-}
-
 export default function Loading(){
     const [val, setVal] = useState("");
     useEffect(()=>{

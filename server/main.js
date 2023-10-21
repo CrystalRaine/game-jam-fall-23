@@ -1,4 +1,6 @@
 // imports
+const {startGameEndpoints} = require("./setupEndpoints.js");
+
 const express = require('express');
 const path = require("path")
 const engines = require('consolidate');
@@ -35,9 +37,7 @@ app.use(sessions({
     resave: false 
 }));
 
-app.get("/test", (req, res)=>{
-    res.send(JSON.stringify({"test":"Test"}));
-});
+startGameEndpoints(app);
 
 // start app
 app.listen(port, ()=>{

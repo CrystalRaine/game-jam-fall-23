@@ -6,7 +6,6 @@ async function join(callback){
     .then(response => response.json())
     .then(data => callback(data.test)) 
     .catch(error => console.error(error)); 
-
 }
 
 
