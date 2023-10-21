@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { join } from "../utility/serverReq.js";
 var W3CWebSocket = require('websocket').w3cwebsocket;
 
-export default function Loading({gameWS, setGameWS}){
+export default function Loading({gameWS, setGameWS, username}){
     const [val, setVal] = useState("");
     
     async function connect(){
@@ -25,7 +25,7 @@ export default function Loading({gameWS, setGameWS}){
 
     function readyWebsocket(){
         console.log("ready");
-        gameWS.send(JSON.stringify({type:"ready"}));
+        gameWS.send(JSON.stringify({type:"ready", username:username}));
     }
 
     useEffect(function (){
@@ -40,6 +40,7 @@ export default function Loading({gameWS, setGameWS}){
     return (<div className="loadingScreen">
         <h2>Loading</h2>
         <p>{val}</p>
+        <p>{username}</p>
         <button onClick={readyWebsocket}>Ready up</button>
     </div>)
 }
