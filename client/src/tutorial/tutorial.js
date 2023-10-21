@@ -1,4 +1,4 @@
-import React, { Component } from "react"; 
+import React from 'react';
 
 import "./tutorial.css";
 import { useNavigate } from "react-router-dom";
@@ -9,31 +9,31 @@ import chopin from '../sound/Prelude.mp3';
 
 export default function Tutorial(){
     const navigate = useNavigate();
-    const song = new Audio(chopin);
-
+  
+    const openLink = function(link){
+        navigate(link);
+    }
+    
     function playHit() {
         new Audio(hit).play();
     }
     
-    function pauseMusic() {
-        song.pause();
-    }
-    
     function playMusic() {
-        song.play();
+        new Audio(chopin).play();
     }
     
-    function goToMenu(){
-        pauseMusic();
-        navigate("/menu");
+    function goToMenu() {
+        new Audio(Button).play();
+
+        navigate("http://localhost:3000/");
     }
 
     return (<div className="tutorialScreen">
         {playMusic()}
         <h2>Tutorial</h2>
         <h3>Push the buttons to attack. Don't lose</h3>
-        <button autoFocus onClick={goToMenu} className='menuButton'>back</button>
+        <button onClick={goToMenu} className='backButton'>Back</button>
         <button
-        onClick={playHit}>Hit Sound</button>
+        onClick={playHit} className='backButton'>Hit Sound</button>
     </div>)
 }
