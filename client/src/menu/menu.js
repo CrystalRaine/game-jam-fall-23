@@ -14,7 +14,10 @@ export default function Home() {
   
     return(
       <div className='home'>
-      <title>Clubbing Clubs Club</title>
+        <title>Clubbing Clubs Club</title>
+        <h2>Menu</h2>
+
+
       </div>
     );
   }
