@@ -8,11 +8,12 @@ import Loading from './loading/loading.js';
 import Level from './level/level.js';
 import Win from './win/win.js';
 import Lose from './lose/lose.js';
-
+ 
+import "./App.css";
 
 function App() {
   return (
-    <div>
+    <div className='background'>
       <Header />
       <BrowserRouter>
         <Routes>

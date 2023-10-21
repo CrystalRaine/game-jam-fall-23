@@ -1,4 +1,5 @@
-
+import React from 'react';
+import picture from './bubbles.jpg';
 
 export default function Win(){
     var test = [];
@@ -8,6 +9,6 @@ export default function Win(){
     return (<div className="winScreen">
         <h2>Win</h2>
         {test}
-        <image></image>
+        <img src={picture} alt="Picture" />
     </div>)
 }
