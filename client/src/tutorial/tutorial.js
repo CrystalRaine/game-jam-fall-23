@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import hit from '../sound/WoodHit.mp3';
 import "./tutorial.css";
 import bach from '../sound/Bach.mp3';
-import music from '../sound/Prelude.mp3';
+import chopin from '../sound/Prelude.mp3';
 
 export default function Tutorial(){
     function playHit() {
@@ -15,7 +15,7 @@ export default function Tutorial(){
         new Audio(bach).play();
     }
     function playMusic() {
-        new Audio(music).play();
+        new Audio(chopin).play();
     }
 
     const handler = (event) => {

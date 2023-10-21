@@ -12,7 +12,7 @@ export default function Home({setUsername}) {
     }
 
     function playJazz() {
-    new Audio(jazz).play();
+      new Audio(jazz).play();
     }
 
     function setUser(){
