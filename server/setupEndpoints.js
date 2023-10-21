@@ -63,6 +63,24 @@ function setupGameWS(){
                     console.log("P1: " + player1Info.username);
                     console.log("P2: " + player2Info.username);
                 break;
+                case "input":
+                    console.log("input sent");
+                    var player = getPlayerByUsername(message.username);
+                    player.position.x = message.posX;
+                    player.position.y = message.posY;
+
+                    if(player1Info.ws != null && player2Info.ws != null){
+                        player1Info.ws.send(JSON.stringify(player2Info.position));
+                        player2Info.ws.send(JSON.stringify(player1Info.position));  
+                    } else {
+                        if(player1Info.ws != null){
+                            player1Info.ws.send("missing player");
+                        }
+                        if(player2Info.ws != null){
+                            player2Info.ws.send("missing player");
+                        }
+                    }
+                break;
             }
         });
 

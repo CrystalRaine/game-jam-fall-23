@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import { join } from "../utility/serverReq.js";
+import { useNavigate } from "react-router-dom";
+
 var W3CWebSocket = require('websocket').w3cwebsocket;
 
 export default function Loading({gameWS, setGameWS, username}){
     const [val, setVal] = useState("");
+    const navigate = useNavigate();
     
     async function connect(){
         const client = new W3CWebSocket('ws://localhost:8000/ws');
@@ -14,7 +16,9 @@ export default function Loading({gameWS, setGameWS, username}){
 
         client.onmessage = (message) => {
             var data = message.data;
-            console.log(data);
+            if(data == "start"){
+                navigate("/level");
+            }
         };
         client.onerror = function() {
             console.log('Connection Error');

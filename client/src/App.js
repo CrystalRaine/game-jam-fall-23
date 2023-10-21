@@ -29,8 +29,8 @@ function App() {
             <Route exact path='/loading' element={<Loading gameWS={ws} setGameWS={setWs}/>}/>
           </Route>
 
-          <Route exact path='/level' element={<Level/>}>
-            <Route exact path='/level' element={<Level/>}/>
+          <Route exact path='/level' element={<Level  gameWS={ws} setGameWS={setWs} username={username}/>}>
+            <Route exact path='/level' element={<Level gameWS={ws} setGameWS={setWs} username={username}/>}/>
           </Route>
 
           <Route exact path='/win' element={<Win/>}>
