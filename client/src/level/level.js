@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import "./level.css";
 
+import { useNavigate } from "react-router-dom";
 
 export default function Level({gameWS, setGameWS, username}){
+    const navigate = useNavigate();
 
     const [p1x, setp1x] = useState(0);
     const [p1y, setp1y] = useState(0);
@@ -56,6 +58,13 @@ export default function Level({gameWS, setGameWS, username}){
 
             setp1name(data.p1.username);
             setp2name(data.p2.username);
+
+            if(data.p2.health <= 0){
+                navigate("/win");
+            }
+            if(data.p1.health <= 0){
+                navigate("/lose");
+            }
         };
 
         document.addEventListener('keydown', function(event){

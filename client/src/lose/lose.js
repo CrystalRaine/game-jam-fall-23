@@ -6,9 +6,9 @@ export default function Lose(){
     function playMusic() {
         new Audio(consolation).play();
     }
+    playMusic()
 
     return (<div className="loseScreen">
-        {playMusic()}
         <h2>Lose</h2>
     </div>)
 }
