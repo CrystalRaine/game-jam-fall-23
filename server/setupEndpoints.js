@@ -1,7 +1,5 @@
 const WebSocket = require('ws');
 
-var counter = 0;
-
 var player1Info = {
     username: null,
     ws: null,
@@ -22,9 +20,9 @@ var player2Info = {
 }
 
 function startGameEndpoints(app){
-    app.get("/test", (req, res)=>{
-        res.send(JSON.stringify({"test":counter++}))
-    });
+    // app.get("/test", (req, res)=>{
+    //     res.send("");
+    // });
 }
 
 function setupGameWS(){
@@ -36,9 +34,10 @@ function setupGameWS(){
 
         ws.on('message', (messageAsString)=>{
             var message = JSON.parse(messageAsString);
-            console.log("a message was recieved: " + JSON.stringify(message));
+            // console.log("a message was recieved: " + JSON.stringify(message));
             switch(message.type){
                 case "ready":
+
                     var player = getPlayerByUsername(message.username);
 
                     if(player == null){
@@ -46,7 +45,7 @@ function setupGameWS(){
                             player1Info.username = message.username;
                             player1Info.ws = ws;
                         } else if (player2Info.username == null){
-                            player2Info.username = username;
+                            player2Info.username = message.username;
                             player2Info.ws = ws;
                         } else {
                             ws.send("Lobby Full");
@@ -56,9 +55,13 @@ function setupGameWS(){
                         player.ws = ws;
                     }
 
-                    console.log(counter);
-                    if(player1Info.username != null) player1Info.ws.send(counter);
-                    if(player2Info.username != null) player2Info.ws.send(counter);
+                    if(player1Info.ws != null && player2Info.ws != null){
+                        player1Info.ws.send("start");
+                        player2Info.ws.send("start");  
+                    }
+
+                    console.log("P1: " + player1Info.username);
+                    console.log("P2: " + player2Info.username);
                 break;
             }
         });
@@ -73,13 +76,15 @@ function setupGameWS(){
 }
 
 function getPlayerByUsername(username){
-    if(player1Info.username == username){
+    if(player1Info.username == null) return null;
+    if(player1Info.username.localeCompare(username) == 0){
         return player1Info;
-    } else if (player2Info.username = username){
+    } 
+    if(player2Info.username == null) return null;
+    if (player2Info.username.localeCompare(username) == 0){
         return player2Info;
-    } else {
-        return null;
     }
+    return null;
 }
 
 module.exports = {startGameEndpoints, setupGameWS};

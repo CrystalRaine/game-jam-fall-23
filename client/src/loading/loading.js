@@ -29,9 +29,9 @@ export default function Loading({gameWS, setGameWS, username}){
     }
 
     useEffect(function (){
-        join((value)=>{
-            setVal(value);
-        });
+        // join((value)=>{
+        //     setVal(value);
+        // });
 
         connect();
 
