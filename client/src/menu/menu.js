@@ -1,6 +1,8 @@
 import React from 'react';
 import "./menu.css";
 import { useNavigate } from "react-router-dom";
+import jazz from '../sound/MainJazz.mp3';
+
 
 export default function Home() {
     const navigate = useNavigate();
@@ -8,7 +10,12 @@ export default function Home() {
     const openLink = function(link){
         navigate(link);
     }
+
+    function playJazz() {
+      new Audio(jazz).play();
+    }
   
+
     // const play = ()=>{
     //   openLink("/join");
     // }
@@ -20,6 +27,7 @@ export default function Home() {
         justifyContent: 'center',
         flexDirection: 'column'
     }}>
+        {playJazz()}
         <title>Clubbing Clubs Club</title>
         <h2>Menu</h2>
         <button>
