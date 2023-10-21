@@ -12,7 +12,7 @@ export default function Home() {
     }
 
     function playJazz() {
-      new Audio(jazz).play();
+    new Audio(jazz).play();
     }
   
 
@@ -23,11 +23,11 @@ export default function Home() {
     return(
       <div className='home' style={{
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: 'baseline',
+        justifyContent: 'space-around',
         flexDirection: 'column'
     }}>
-        {playJazz()}
+        
         <title>Clubbing Clubs Club</title>
         <h2>Menu</h2>
         <button>
