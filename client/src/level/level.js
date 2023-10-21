@@ -13,6 +13,21 @@ export default function Level({gameWS, setGameWS, username}){
         gameWS.send(JSON.stringify({type:"input", username:username, posX:p1x + x, posY:p1y + y}));
     }
 
+    const handler = (event) => {
+        if (event.key === 'w') {
+            
+        }
+        else if(event.key === 'a') {
+            
+        }
+        else if(event.key === 's') {
+            
+        }
+        else if(event.key === 'd') {
+            
+        }
+    }
+
     useEffect(()=>{
         gameWS.onmessage = (message) => {
             var data = message.data;
@@ -24,7 +39,7 @@ export default function Level({gameWS, setGameWS, username}){
         };
     }, []);
 
-    return (<div className="levelScreen">
+    return (<div className="levelScreen" onKeyDown={handler}>
         <button onClick={()=>{moveTo(50, 50)}}>Move</button>
         <div id="player1" style={{position: "absolute", left:p1x + 'px', top:p1y + 'px'}}>Player1</div>
         <div id="player2" style={{position: "absolute", left:p2x + 'px', top:p2y + 'px'}}>Player2</div>
