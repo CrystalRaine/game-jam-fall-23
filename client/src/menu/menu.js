@@ -29,7 +29,7 @@ export default function Home({setUsername}) {
   
     return(
       <div className='home'>
-        
+        {playJazz()}
         
         <title>Clubbing Clubs Club</title>
         <h2>Menu</h2>
