@@ -4,6 +4,10 @@ var player1Info = {
     username: null,
     ws: null,
     ready: false,
+    momentum:{
+        x: 0,
+        y: 0,
+    },
     position:{
         x:0,
         y:0,
@@ -14,8 +18,12 @@ var player2Info = {
     username: null,
     ws: null,
     ready: false,
+    momentum:{
+        x: 0,
+        y: 0,
+    },
     position:{
-        x:0,
+        x:600,
         y:0,
     },
     hp: 100,
@@ -66,21 +74,50 @@ function setupGameWS(){
                     console.log("P2: " + player2Info.username);
 
                     setInterval(()=>{
-                        player1Info.position.y += 1;
-                        player2Info.position.y += 1;
 
-                        if(player1Info.position.y > 400){
-                            player1Info.position.y = 400;
+                        player1Info.momentum.y += 1;
+                        player2Info.momentum.y += 1;
+
+                        player1Info.position.x += player1Info.momentum.x;
+                        player1Info.position.y += player1Info.momentum.y;
+                        player2Info.position.x += player2Info.momentum.x;
+                        player2Info.position.y += player2Info.momentum.y;
+
+                        if(player1Info.position.y > 600){
+                            player1Info.position.y = 600;
+                            player1Info.momentum.y = 0;
                         }
-                        if(player2Info.position.y > 400){
-                            player2Info.position.y = 400;
+                        if(player2Info.position.y > 600){
+                            player2Info.position.y = 600;
+                            player2Info.momentum.y = 0;
+
+                        }
+                        if(player1Info.position.y < 200){
+                            player1Info.position.y = 200;
+                            player1Info.momentum.y = 0;
+                        }
+                        if(player2Info.position.y < 200){
+                            player2Info.position.y = 200;
+                            player2Info.momentum.y = 0;
                         }
 
                         if(player1Info.position.x < 0){
                             player1Info.position.x = 0;
+                            player1Info.momentum.x = 0;
+
                         }
                         if(player2Info.position.x < 0){
                             player2Info.position.x = 0;
+                            player2Info.momentum.x = 0;
+
+                        }
+                        if(player1Info.position.x > 600){
+                            player1Info.position.x = 600;
+                            player1Info.momentum.x = 0;
+                        }
+                        if(player2Info.position.x > 600){
+                            player2Info.position.x = 600;
+                            player2Info.momentum.x = 0;
                         }
 
                         if(player1Info.ws != null && player2Info.ws != null){
@@ -102,8 +139,8 @@ function setupGameWS(){
                     console.log("input sent");
 
                     var player = getPlayerByUsername(message.username);
-                    player.position.x = message.posX;
-                    player.position.y = message.posY;
+                    player.momentum.x += message.posX;
+                    player.momentum.y += message.posY;
                 break;
             }
         });

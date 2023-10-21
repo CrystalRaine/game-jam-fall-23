@@ -7,24 +7,22 @@ export default function Level({gameWS, setGameWS, username}){
     const [p2x, setp2x] = useState(0);
     const [p2y, setp2y] = useState(0);
 
-    async function moveTo(x, y){
-        setp1x(p1x + x);
-        setp1y(p1y + y);
-        gameWS.send(JSON.stringify({type:"input", username:username, posX:p1x + x, posY:p1y + y}));
+    async function move(x, y){
+        gameWS.send(JSON.stringify({type:"input", username:username, posX:x, posY:y}));
     }
 
     const handler = (event) => {
         if (event.key === 'w') {
-            moveTo(0, -2);
+            move(0, -10);
         }
         else if(event.key === 'a') {
-            moveTo(-2, 0);
+            move(-2, 0);
         }
         else if(event.key === 's') {
-            moveTo(0, 2);
+            move(0, 2);
         }
         else if(event.key === 'd') {
-            moveTo(2, 0);
+            move(2, 0);
         }
     }
 
