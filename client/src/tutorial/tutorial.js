@@ -1,5 +1,5 @@
 import React from 'react';
-import sound from './Bach.mp3';
+import sound from '../sound/WoodHit.mp3';
 
 export default function Tutorial(){
     function play() {
@@ -9,7 +9,7 @@ export default function Tutorial(){
     return (<div className="tutorialScreen">
         <h2>Tutorial</h2>
         <h3>This is going to be the tutorial in the end. I hope we remember this.</h3>
-        <a href="http://localhost:3000/">___back___</a>
+        <button><a href="http://localhost:3000/">___back___</a></button>
         <button
         onClick={play}>Sound</button>
     </div>)
