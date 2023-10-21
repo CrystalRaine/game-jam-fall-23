@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
+import {useRef} from 'react';
 
 import Menu from './menu/menu.js';
 import Tutorial from './tutorial/tutorial.js';
@@ -11,12 +12,32 @@ import Lose from './lose/lose.js';
  
 import "./App.css";
 
+import bach from './sound/Bach.mp3';
+import music from './sound/Prelude.mp3';
+
 function App() {
   const [ws, setWs] = useState(null);
   const [username, setUsername] = useState(null);
+  
+  
+  
+  function playBach() {
+    new Audio(bach).play();
+  }
+  function playMusic() {
+    new Audio(music).play();
+  }
 
+  const handler = (event) => {
+    if (event.key === 'b') {
+        playBach();
+    }
+    else if(event.key === 'c') {
+        playMusic();
+    }
+  }
   return (
-    <div className='background'>
+    <div className='background' onKeyDown={handler}>
       <Header />
       <BrowserRouter>
         <Routes>

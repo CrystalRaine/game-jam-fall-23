@@ -12,7 +12,7 @@ export default function Home({setUsername}) {
     }
 
     function playJazz() {
-    new Audio(jazz).play();
+      new Audio(jazz).play();
     }
 
     function setUser(){
@@ -33,7 +33,7 @@ export default function Home({setUsername}) {
   
     return(
       <div className='home'>
-        
+        {playJazz()}
         
         <title>Clubbing Clubs Club</title>
         <h2>Menu</h2>

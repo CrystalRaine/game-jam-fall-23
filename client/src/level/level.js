@@ -28,5 +28,6 @@ export default function Level({gameWS, setGameWS, username}){
         <button onClick={()=>{moveTo(50, 50)}}>Move</button>
         <div id="player1" style={{position: "absolute", left:p1x + 'px', top:p1y + 'px'}}>Player1</div>
         <div id="player2" style={{position: "absolute", left:p2x + 'px', top:p2y + 'px'}}>Player2</div>
+        <button autoFocus></button>
     </div>)
 }
