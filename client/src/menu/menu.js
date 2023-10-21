@@ -11,9 +11,9 @@ export default function Home({setUsername}) {
         navigate(link);
     }
 
-//    function playJazz() {
-//      new Audio(jazz).play();
-//    }
+    function playJazz() {
+      new Audio(jazz).play();
+    }
 
     function setUser(){
       var uf = document.getElementById("usernameField");
@@ -31,11 +31,12 @@ export default function Home({setUsername}) {
     //   openLink("/join");
     // }
           
-//        {playJazz()}
 
     return(
       <div className='home'>
         <title>Clubbing Clubs Club</title>
+        
+
         <h2>Menu</h2>
         <button onClick={goToTutorial} className='tutorialButton'>Tutorial</button>
         <p>

@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import buttonSound from "../sound/Button.mp3";
+import grieg from "../sound/Grieg.mp3";
+
+
 var W3CWebSocket = require('websocket').w3cwebsocket;
 
 export default function Loading({gameWS, setGameWS, username}){
@@ -29,6 +33,9 @@ export default function Loading({gameWS, setGameWS, username}){
 
     function readyWebsocket(){
         console.log("ready");
+        new Audio(buttonSound).play();        
+        new Audio(grieg).play();
+
         gameWS.send(JSON.stringify({type:"ready", username:username}));
     }
 
@@ -40,6 +47,7 @@ export default function Loading({gameWS, setGameWS, username}){
         connect();
 
     }, []);
+
 
     return (<div className="loadingScreen">
         <h2>Loading</h2>
