@@ -2,9 +2,17 @@ import React, { useState } from 'react';
 import hit from '../sound/WoodHit.mp3';
 import "./tutorial.css";
 import bach from '../sound/Bach.mp3';
-import chopin from '../sound/Prelude.mp3';
+import music from '../sound/Prelude.mp3';
+import "./tutorial.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Tutorial(){
+    const navigate = useNavigate();
+  
+    const openLink = function(link){
+        navigate(link);
+    }
+    
     function playHit() {
         new Audio(hit).play();
     }
@@ -25,6 +33,9 @@ export default function Tutorial(){
         else if(event.key === 'c') {
             playMusic();
         }
+    }
+    function goToMenu(){
+        navigate("http://localhost:3000/");
       }
     
     return (<div className="tutorialScreen"  onKeyDown={handler}>
@@ -32,8 +43,8 @@ export default function Tutorial(){
         <h2>Tutorial</h2>
         {playMusic}
         <h3>Push the buttons to attack. Don't lose</h3>
-        <button autoFocus><a href="http://localhost:3000/">___back___</a></button>
+        <button onClick={goToMenu} className='backButton'>Back</button>
         <button
-        onClick={playHit}>Hit Sound</button>
+        onClick={playHit} className='hitSoundButton'>Hit Sound</button>
     </div>)
 }
