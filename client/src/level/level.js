@@ -1,19 +1,15 @@
 import { useState, useEffect } from "react";
 import "./level.css";
 
-import { useNavigate } from "react-router-dom";
-
 // TODO: Attack varying damage
 // TODO: Attack knockback
 // TODO: Sprites
 // TODO: Background image
 // TODO: Attack Animation
 // TODO: fix character freezing 
-// TODO: Win screen / lose screen crash
+// TODO: clean up game on server after it finishes
 
 export default function Level({gameWS, setGameWS, username}){
-    const navigate = useNavigate();
-
     const [p1x, setp1x] = useState(0);
     const [p1y, setp1y] = useState(0);
     const [p2x, setp2x] = useState(0);
@@ -68,10 +64,10 @@ export default function Level({gameWS, setGameWS, username}){
             setp2name(data.p2.username);
 
             if(data.p2.health <= 0){
-                navigate("/win");
+                window.location.href = 'http://localhost:3000/win';
             }
             if(data.p1.health <= 0){
-                navigate("/lose");
+                window.location.href = 'http://localhost:3000/lose';
             }
         };
 
