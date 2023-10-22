@@ -38,6 +38,6 @@ export default function Tutorial(){
         <h3 onMouseEnter={() => {stop(); play();}}>Use the WASD keys to move. Use the left and right arrow keys to attack in that direction. Don't lose.</h3>
         <button onClick={goToMenu} className='backButton'>Back</button>
         <button
-        onClick={playHit} className='backButton'>Hit Sound</button>
+        onClick={playHit} className='hitSoundButton'>Hit Sound</button>
     </div>)
 }
