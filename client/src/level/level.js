@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import "./level.css";
 import sandwich from './ClubSandwich.png';
 import suit from './ClubSuit.png';
+import whoosh from '../sound/Whoosh.mp3';
+import hit from '../sound/WoodHit.mp3';
 
 // TODO: Attack varying damage
 // TODO: Attack knockback
@@ -21,6 +23,13 @@ export default function Level({gameWS, setGameWS, username}){
     
     const [p1name, setp1name] = useState("");
     const [p2name, setp2name] = useState("");
+
+    function playHit() {
+        new Audio(hit).play();
+    }
+    function playWhoosh() {
+        new Audio(whoosh).play();
+    }
 
     async function move(x, y){
         gameWS.send(JSON.stringify({type:"input", username:username, posX:x, posY:y}));
