@@ -18,11 +18,14 @@ export default function Level({gameWS, setGameWS, username}){
     const [p1y, setp1y] = useState(0);
     const [p2x, setp2x] = useState(0);
     const [p2y, setp2y] = useState(0);
+
     const [p1health, setp1health] = useState(0);
     const [p2health, setp2health] = useState(0);
     
     const [p1name, setp1name] = useState("");
     const [p2name, setp2name] = useState("");
+
+    const [attackDelay, setAttackDelay] = useState(0);
 
     function playHit() {
         new Audio(hit).play();
@@ -35,6 +38,10 @@ export default function Level({gameWS, setGameWS, username}){
         gameWS.send(JSON.stringify({type:"input", username:username, posX:x, posY:y}));
     }
     async function attack(right){
+        console.log(attackDelay);
+        if (attackDelay <= 0) {
+            playWhoosh();
+        }
         gameWS.send(JSON.stringify({type:"attack", username:username, direction:right}));
     }
 
@@ -52,7 +59,7 @@ export default function Level({gameWS, setGameWS, username}){
             move(2, 0);
         }
         else if(event == 37) {
-            attack(-1)
+            attack(-1);
         }
         else if(event == 39) {
             attack(1);
@@ -73,6 +80,8 @@ export default function Level({gameWS, setGameWS, username}){
 
             setp1name(data.p1.username);
             setp2name(data.p2.username);
+
+            setAttackDelay(data.p1.attackDelay);
 
             if(data.p2.health <= 0){
                 window.location.href = 'http://localhost:3000/win';
