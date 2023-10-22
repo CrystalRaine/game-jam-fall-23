@@ -13,6 +13,7 @@ export default function Lose(){
     );
 
     function goToMenu() {
+        stop();
         navigate("http://localhost:3000/");
     }
 
