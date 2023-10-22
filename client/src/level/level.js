@@ -45,7 +45,6 @@ export default function Level({gameWS, setGameWS, username}){
     }
 
     async function move(x, y){
-        play();
         gameWS.send(JSON.stringify({type:"input", username:username, posX:x, posY:y}));
     }
     async function attack(right, attackDelay){
@@ -99,6 +98,10 @@ export default function Level({gameWS, setGameWS, username}){
         });
     }, []);
 
+    if (p1.attackDelay == 99) {
+        playWhoosh();
+    }
+
     if(p1.attackDelay < 0){
         var p1sprite = <img src={sandwich} className="idle"></img>;
     } else{
@@ -111,7 +114,7 @@ export default function Level({gameWS, setGameWS, username}){
     }
 
     return (<div className="levelScreen">
-    <p>{p1.username}: {p1.health} | {p2.username}: {p2.health}</p>
+    <p>{p1.username}: {p1.health} | {p2.username}: {p2.health} {play}</p>
         <div id="battlefield"></div>
         <div id="player1" className="player" style={{position: "absolute", left:p1.position.x + 'px', top:p1.position.y + 'px'}}>{p1sprite}</div>
         <div id="player2" className="player" style={{position: "absolute", left:p2.position.x + 'px', top:p2.position.y + 'px'}}>{p2sprite}</div>
