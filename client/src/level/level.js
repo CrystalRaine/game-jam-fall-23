@@ -13,8 +13,6 @@ import grieg from "../sound/Grieg.mp3";
 // TODO: Attack varying damage
 // TODO: Attack knockback
 // TODO: Background image
-// TODO: Attack Animation
-// TODO: fix character freezing 
 // TODO: clean up game on server after it finishes
 
 export default function Level({gameWS, setGameWS, username}){
@@ -118,14 +116,30 @@ export default function Level({gameWS, setGameWS, username}){
     }
 
     if(p1.attackDelay < 0){
-        var p1sprite = <img src={sandwich} className="idle"></img>;
+        if(p1.momentum.x < 0){
+            var p1sprite = <img src={sandwich} className="leftIdle"></img>;
+        }else{
+            var p1sprite = <img src={sandwich} className="idle"></img>;
+        }
     } else{
-        var p1sprite = <img src={sandwichAttack}  className="attack"></img>;
+        if(p1.momentum.x < 0){
+            var p1sprite = <img src={sandwichAttack} className="leftAttack"></img>;
+        } else{
+            var p1sprite = <img src={sandwichAttack}  className="attack"></img>;
+        }
     }
     if(p2.attackDelay < 0){
-        var p2sprite = <img src={suit}  className="idle"></img>;
+        if(p2.momentum.x < 0){
+            var p2sprite = <img src={suit} className="leftIdle"></img>;
+        }else{
+            var p2sprite = <img src={suit} className="idle"></img>;
+        }
     } else{
-        var p2sprite = <img src={suitAttack} className="attack"></img>;
+        if(p2.momentum.x < 0){
+            var p2sprite = <img src={suitAttack} className="leftAttack"></img>;
+        } else{
+            var p2sprite = <img src={suitAttack}  className="attack"></img>;
+        }
     }
 
     return (<div className="levelScreen">

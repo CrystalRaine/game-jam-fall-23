@@ -12,6 +12,19 @@
     height: 50px; 
 }
 
+.leftIdle{
+    width: 50px;
+    height: 50px; 
+    transform: scaleX(-1);
+}
+
+.leftAttack{
+    width: 100px;
+    height: 50px; 
+    transform: scaleX(-1);
+    margin-left: -50px;
+}
+
 .attack{
     width: 100px;
     height: 50px; 
