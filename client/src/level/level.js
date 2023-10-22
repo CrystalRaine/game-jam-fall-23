@@ -95,15 +95,15 @@ export default function Level({gameWS, setGameWS, username}){
         });
     }, []);
 
-    if(p1.attackDelay > 0){
-        var p1sprite = <img src={sandwich}></img>;
+    if(p1.attackDelay < 0){
+        var p1sprite = <img src={sandwich} className="idle"></img>;
     } else{
-        var p1sprite = <img src={sandwichAttack}></img>;
+        var p1sprite = <img src={sandwichAttack}  className="attack"></img>;
     }
-    if(p2.attackDelay > 0){
-        var p2sprite = <img src={suit}></img>;
+    if(p2.attackDelay < 0){
+        var p2sprite = <img src={suit}  className="idle"></img>;
     } else{
-        var p2sprite = <img src={suitAttack}></img>;
+        var p2sprite = <img src={suitAttack} className="attack"></img>;
     }
 
     return (<div className="levelScreen">
