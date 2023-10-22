@@ -33,6 +33,7 @@ export default function Level({gameWS, setGameWS, username}){
         attackDelay:100,
     });
 
+    const [playing, setPlaying] = useState(false);
     const [play, { stop }] = useSound(
         grieg,
         {volume: 1}
@@ -45,11 +46,18 @@ export default function Level({gameWS, setGameWS, username}){
     }
 
     async function move(x, y){
+        
         gameWS.send(JSON.stringify({type:"input", username:username, posX:x, posY:y}));
     }
     async function attack(right, attackDelay){
         gameWS.send(JSON.stringify({type:"attack", username:username, direction:right}));
     }
+    
+
+    // if (!playing) {
+    //     play();
+    //     setPlaying(true);
+    // }
 
     const handler = (event) => {
 
@@ -79,6 +87,13 @@ export default function Level({gameWS, setGameWS, username}){
         gameWS.onmessage = async (message) => {
             var data = message.data;
             data = JSON.parse(data);
+
+            
+            if (!playing) {
+                console.log("Going");
+                play();
+                setPlaying(true);
+            }
 
             setp1(data.p1);
             setp2(data.p2);
@@ -114,7 +129,7 @@ export default function Level({gameWS, setGameWS, username}){
     }
 
     return (<div className="levelScreen">
-    <p>{p1.username}: {p1.health} | {p2.username}: {p2.health} {play}</p>
+    <p>{p1.username}: {p1.health} | {p2.username}: {p2.health}</p>
         <div id="battlefield"></div>
         <div id="player1" className="player" style={{position: "absolute", left:p1.position.x + 'px', top:p1.position.y + 'px'}}>{p1sprite}</div>
         <div id="player2" className="player" style={{position: "absolute", left:p2.position.x + 'px', top:p2.position.y + 'px'}}>{p2sprite}</div>
