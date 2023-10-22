@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import "./level.css";
+import sandwich from './ClubSandwich.png';
+import suit from './ClubSuit.png';
 
 // TODO: Attack varying damage
 // TODO: Attack knockback
@@ -80,7 +82,7 @@ export default function Level({gameWS, setGameWS, username}){
     return (<div className="levelScreen">
     <p>{p1name}: {p1health} | {p2name}: {p2health}</p>
         <div id="battlefield"></div>
-        <div id="player1" className="player" style={{position: "absolute", left:p1x + 'px', top:p1y + 'px'}}>Player1</div>
-        <div id="player2" className="player" style={{position: "absolute", left:p2x + 'px', top:p2y + 'px'}}>Player2</div>
+        <div id="player1" className="player" style={{position: "absolute", left:p1x + 'px', top:p1y + 'px'}}><img src={sandwich}></img></div>
+        <div id="player2" className="player" style={{position: "absolute", left:p2x + 'px', top:p2y + 'px'}}><img src={suit}></img></div>
     </div>)
 }
