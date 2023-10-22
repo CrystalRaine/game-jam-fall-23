@@ -91,9 +91,7 @@ export default function Level({gameWS, setGameWS, username}){
     return (<div className="levelScreen">
     <p>{p1name}: {p1health} | {p2name}: {p2health}</p>
         <div id="battlefield"></div>
-        <div id="player1" className="player" style={{position: "absolute", left:p1x + 'px', top:p1y + 'px'}}><img src={sandwich}>width: 50px;
-    height: 50px; </img></div>
-        <div id="player2" className="player" style={{position: "absolute", left:p2x + 'px', top:p2y + 'px'}}><img src={suit}>width: 50px;
-    height: 50px; </img></div>
+        <div id="player1" className="player" style={{position: "absolute", left:p1x + 'px', top:p1y + 'px'}}><img src={sandwich}></img></div>
+        <div id="player2" className="player" style={{position: "absolute", left:p2x + 'px', top:p2y + 'px'}}><img src={suit}></img></div>
     </div>)
 }
