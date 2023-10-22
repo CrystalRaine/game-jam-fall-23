@@ -49,7 +49,6 @@ export default function Level({gameWS, setGameWS, username}){
         gameWS.send(JSON.stringify({type:"input", username:username, posX:x, posY:y}));
     }
     async function attack(right, attackDelay){
-        
         gameWS.send(JSON.stringify({type:"attack", username:username, direction:right}));
     }
 
