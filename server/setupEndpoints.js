@@ -9,6 +9,8 @@ const boundingXMin = 0;
 const boundingYMax = 600;
 const boundingYMin = 200;
 
+const frameTimeMS = 1000/60;
+
 const attackRange = 100;
 
 var periodicCall;
@@ -171,7 +173,7 @@ function setupGameWS(){
                                 player2Info.ws.send("missing player");
                             }
                         }
-                    }, 1000/60);
+                    }, frameTimeMS);
 
                 break;
                 case "input":
