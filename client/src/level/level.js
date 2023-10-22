@@ -35,12 +35,14 @@ export default function Level({gameWS, setGameWS, username}){
     }
 
     async function move(x, y){
+        console.log(x);
         gameWS.send(JSON.stringify({type:"input", username:username, posX:x, posY:y}));
     }
     async function attack(right){
         console.log(attackDelay);
         if (attackDelay <= 0) {
             playWhoosh();
+            playHit();
         }
         gameWS.send(JSON.stringify({type:"attack", username:username, direction:right}));
     }
@@ -72,6 +74,7 @@ export default function Level({gameWS, setGameWS, username}){
             data = JSON.parse(data);
             setp2x(data.p2.position.x);
             setp2y(data.p2.position.y);
+
             setp1x(data.p1.position.x);
             setp1y(data.p1.position.y);
 
@@ -94,7 +97,7 @@ export default function Level({gameWS, setGameWS, username}){
         document.addEventListener('keydown', function(event){
             // console.log(`Key: ${event.key} with keycode ${event.keyCode} has been pressed`);
             handler(event.keyCode);
-        });   
+        });
     }, []);
 
     return (<div className="levelScreen">
