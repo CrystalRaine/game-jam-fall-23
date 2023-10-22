@@ -1,15 +1,19 @@
 import consolation from '../sound/Consolation.mp3';
+import useSound from 'use-sound';
 
 
 
 export default function Lose(){
-    function playMusic() {
-        new Audio(consolation).play();
-    }
+    
+    const [play, { stop }] = useSound(
+        consolation,
+        {volume: 1}
+    );
+
     //playMusic()
 
     return (<div className="loseScreen">
-        <h2>Lose</h2>
+        <h2 onMouseEnter={() => {stop(); play();}}>Lose</h2>
         <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Strategy Guide</a>
     </div>)
 }
