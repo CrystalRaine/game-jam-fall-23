@@ -22,6 +22,7 @@
     width: 100px;
     height: 50px; 
     transform: scaleX(-1);
+    margin-left: -50px;
 }
 
 .attack{
