@@ -88,6 +88,8 @@ function setupGameWS(){
 
                     periodicCall = setInterval(()=>{
 
+                        if(player1Info == null || player2Info == null) return;
+
                         player1Info.attackDelay -= 1;
                         player2Info.attackDelay -= 1;
                         
@@ -182,6 +184,8 @@ function setupGameWS(){
                     }
                 break;
                 case "attack":
+                    if(getPlayerByUsername(message.username) == null) break;
+
                     var player = getPlayerByUsername(message.username);
                     if(player.attackDelay <= 0){
                         player.attackDelay = attackDelay;
@@ -206,7 +210,15 @@ function setupGameWS(){
                                 }
                             }
                         }
+
+
                         if(opp.hp <= 0 || player.hp <= 0){
+                        
+                            clearInterval(periodicCall);
+
+                            player1Info.ws.send(JSON.stringify({p2: getSendableInfo(player2Info), p1: getSendableInfo(player1Info)}));
+                            player2Info.ws.send(JSON.stringify({p2: getSendableInfo(player1Info), p1: getSendableInfo(player2Info)}));  
+
                             player1Info = {
                                 username: null,
                                 ws: null,
@@ -241,8 +253,8 @@ function setupGameWS(){
                                 jumps: jumpCount,
                                 hp: 100,
                             };
-                            clearInterval(periodicCall);
                         }
+                        
                     }
                 break;
             }

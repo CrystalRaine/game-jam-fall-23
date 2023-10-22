@@ -13,8 +13,6 @@ import grieg from "../sound/Grieg.mp3";
 // TODO: Attack varying damage
 // TODO: Attack knockback
 // TODO: Background image
-// TODO: Attack Animation
-// TODO: fix character freezing 
 // TODO: clean up game on server after it finishes
 
 export default function Level({gameWS, setGameWS, username}){
