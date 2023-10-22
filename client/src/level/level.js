@@ -7,7 +7,6 @@ import hit from '../sound/WoodHit.mp3';
 
 // TODO: Attack varying damage
 // TODO: Attack knockback
-// TODO: Sprites
 // TODO: Background image
 // TODO: Attack Animation
 // TODO: fix character freezing 
@@ -97,10 +96,13 @@ export default function Level({gameWS, setGameWS, username}){
         });   
     }, []);
 
+    var p1sprite = <img src={sandwich}></img>;
+    var p2sprite = <img src={suit}></img>;
+
     return (<div className="levelScreen">
     <p>{p1name}: {p1health} | {p2name}: {p2health}</p>
         <div id="battlefield"></div>
-        <div id="player1" className="player" style={{position: "absolute", left:p1x + 'px', top:p1y + 'px'}}><img src={sandwich}></img></div>
-        <div id="player2" className="player" style={{position: "absolute", left:p2x + 'px', top:p2y + 'px'}}><img src={suit}></img></div>
+        <div id="player1" className="player" style={{position: "absolute", left:p1x + 'px', top:p1y + 'px'}}>{p1sprite}</div>
+        <div id="player2" className="player" style={{position: "absolute", left:p2x + 'px', top:p2y + 'px'}}>{p2sprite}</div>
     </div>)
 }
