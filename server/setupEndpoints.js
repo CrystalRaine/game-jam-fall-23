@@ -184,12 +184,13 @@ function setupGameWS(){
                     }
                 break;
                 case "attack":
-                    if(getPlayerByUsername(message.username) == null) break;
-
-                    var player = getPlayerByUsername(message.username);
+                    var player;
+                    var opp;
+                    
+                    if((player = getPlayerByUsername(message.username)) == null) break;
+                    if((opp = getOpponentByUsername(message.username)) == null) break;
                     if(player.attackDelay <= 0){
                         player.attackDelay = attackDelay;
-                        var opp = getOpponentByUsername(message.username);
                         // damage opponent
 
                         if(message.direction == -1){
