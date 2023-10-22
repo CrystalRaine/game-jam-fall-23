@@ -28,6 +28,7 @@ var player1Info = {
         y:0,
     },
     attackDelay: 0,
+    dodgeDelay: 0,
     jumps: jumpCount,
     hp: 100,
 }
@@ -44,6 +45,7 @@ var player2Info = {
         y:0,
     },
     attackDelay: 0,
+    dodgeDelay: 0,
     jumps: jumpCount,
     hp: 100,
 }
@@ -207,6 +209,40 @@ function setupGameWS(){
                             }
                         }
                         if(opp.hp <= 0 || player.hp <= 0){
+                            player1Info = {
+                                username: null,
+                                ws: null,
+                                ready: false,
+                                momentum:{
+                                    x: 0,
+                                    y: 0,
+                                },
+                                position:{
+                                    x:0,
+                                    y:0,
+                                },
+                                attackDelay: 0,
+                                dodgeDelay: 0,
+                                jumps: jumpCount,
+                                hp: 100,
+                            };
+                            player2Info = {
+                                username: null,
+                                ws: null,
+                                ready: false,
+                                momentum:{
+                                    x: 0,
+                                    y: 0,
+                                },
+                                position:{
+                                    x:0,
+                                    y:0,
+                                },
+                                attackDelay: 0,
+                                dodgeDelay: 0,
+                                jumps: jumpCount,
+                                hp: 100,
+                            };
                             clearInterval(periodicCall);
                         }
                     }
