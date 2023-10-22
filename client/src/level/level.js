@@ -57,7 +57,7 @@ export default function Level({gameWS, setGameWS, username}){
         console.log(JSON.stringify(p1));
 
         if (event == 87 || event == 32) {
-            move(0, -7);
+            move(0, -5);
         }
         else if(event == 65) {
             move(-2, 0);
