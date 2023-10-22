@@ -36,11 +36,16 @@
 }
 
 #battlefield{
-    background-color: black;
     width: 1250px;
     height: 450px;
     position:absolute;
     left: 0px;
     top: 200px;
     border: 1px solid red;
+}
+
+.bgImage{
+    width: 1250px;
+    height: 450px;
+    margin-top: 60px;
 }
