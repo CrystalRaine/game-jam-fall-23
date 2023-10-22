@@ -32,10 +32,10 @@ export default function Tutorial(){
         navigate("http://localhost:3000/");
     }
 
-    return (<div className="tutorialScreen" onMouseEnter={() => {stop(); play();}}>
+    return (<div className="tutorialScreen">
         
         <h2>Tutorial</h2>
-        <h3>Use the WASD keys to move. Use the left and right arrow keys to attack in that direction. Don't lose.</h3>
+        <h3 onMouseEnter={() => {stop(); play();}}>Use the WASD keys to move. Use the left and right arrow keys to attack in that direction. Don't lose.</h3>
         <button onClick={goToMenu} className='backButton'>Back</button>
         <button
         onClick={playHit} className='backButton'>Hit Sound</button>

@@ -1,5 +1,4 @@
 import React from 'react';
-import picture from './Graph.png';
 
 export default function Win(){
     var test = [];
@@ -9,6 +8,5 @@ export default function Win(){
     return (<div className="winScreen">
         <h2>Win</h2>
         {test}
-        <img src={picture} alt="Picture" />
     </div>)
 }
