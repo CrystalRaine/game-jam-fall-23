@@ -36,12 +36,14 @@ export default function Level({gameWS, setGameWS, username}){
     }
 
     async function move(x, y){
+        console.log(x);
         gameWS.send(JSON.stringify({type:"input", username:username, posX:x, posY:y}));
     }
     async function attack(right, attackDelay){
         console.log(attackDelay);
         if (p1.attackDelay <= 0) {
             playWhoosh();
+            playHit();
         }
         gameWS.send(JSON.stringify({type:"attack", username:username, direction:right}));
     }
@@ -88,7 +90,7 @@ export default function Level({gameWS, setGameWS, username}){
 
         document.addEventListener('keydown', function(event){
             handler(event.keyCode);
-        });   
+        });
     }, []);
 
     var p1sprite = <img src={sandwich}></img>;
