@@ -4,6 +4,8 @@ import useSound from 'use-sound';
 
 import sandwich from './ClubSandwich.png';
 import suit from './ClubSuit.png';
+import sandwichAttack from './ClubSandwichAttack.png';
+import suitAttack from './ClubSuitAttack.png';
 import whoosh from '../sound/Whoosh.mp3';
 import hit from '../sound/WoodHit.mp3';
 import grieg from "../sound/Grieg.mp3";
@@ -102,13 +104,21 @@ export default function Level({gameWS, setGameWS, username}){
         playWhoosh();
     }
 
-    var p1sprite = <img src={sandwich}></img>;
-    var p2sprite = <img src={suit}></img>;
+    if(p1.attackDelay > 0){
+        var p1sprite = <img src={sandwich}></img>;
+    } else{
+        var p1sprite = <img src={sandwichAttack}></img>;
+    }
+    if(p2.attackDelay > 0){
+        var p2sprite = <img src={suit}></img>;
+    } else{
+        var p2sprite = <img src={suitAttack}></img>;
+    }
 
     return (<div className="levelScreen">
     <p>{p1.username}: {p1.health} | {p2.username}: {p2.health}</p>
         <div id="battlefield"></div>
-        <div id="player1" className="player" style={{position: "absolute", left:p1.position.x + 'px', top:p1.position.y + 'px'}}><img src={sandwich}></img></div>
-        <div id="player2" className="player" style={{position: "absolute", left:p2.position.x + 'px', top:p2.position.y + 'px'}}><img src={suit}></img></div>
+        <div id="player1" className="player" style={{position: "absolute", left:p1.position.x + 'px', top:p1.position.y + 'px'}}>{p1sprite}</div>
+        <div id="player2" className="player" style={{position: "absolute", left:p2.position.x + 'px', top:p2.position.y + 'px'}}>{p2sprite}</div>
     </div>)
 }
