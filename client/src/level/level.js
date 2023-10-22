@@ -8,6 +8,7 @@ import sandwichAttack from './ClubSandwichAttack.png';
 import suitAttack from './ClubSuitAttack.png';
 import whoosh from '../sound/Whoosh.mp3';
 import hit from '../sound/WoodHit.mp3';
+import jump from '../sound/Jump.mp3';
 import grieg from "../sound/Grieg.mp3";
 
 // TODO: Attack varying damage
@@ -42,6 +43,9 @@ export default function Level({gameWS, setGameWS, username}){
     function playWhoosh() {
         new Audio(whoosh).play();
     }
+    function playJump() {
+        new Audio(jump).play();
+    }
 
     async function move(x, y){
         
@@ -51,11 +55,6 @@ export default function Level({gameWS, setGameWS, username}){
         gameWS.send(JSON.stringify({type:"attack", username:username, direction:right}));
     }
     
-
-    // if (!playing) {
-    //     play();
-    //     setPlaying(true);
-    // }
 
     const handler = (event) => {
 
@@ -80,6 +79,12 @@ export default function Level({gameWS, setGameWS, username}){
             attack(1, p1.attackDelay);
         }
     }
+    const jumper = (event) => {
+        console.log(event);
+        if (event == 87 || event == 32) {
+            playJump();
+        }
+    }
 
     useEffect(()=>{
         gameWS.onmessage = async (message) => {
@@ -87,11 +92,7 @@ export default function Level({gameWS, setGameWS, username}){
             data = JSON.parse(data);
 
             
-            if (!playing) {
-                console.log("Going");
-                play();
-                setPlaying(true);
-            }
+            
 
             setp1(data.p1);
             setp2(data.p2);
@@ -109,11 +110,15 @@ export default function Level({gameWS, setGameWS, username}){
         document.addEventListener('keydown', function(event){
             handler(event.keyCode);
         });
+        document.addEventListener('keyup', function(event){
+            jumper(event.keyCode);
+        });
     }, []);
 
     if (p1.attackDelay == 99) {
         playWhoosh();
     }
+    
 
     if(p1.attackDelay < 0){
         if(p1.momentum.x < 0){
