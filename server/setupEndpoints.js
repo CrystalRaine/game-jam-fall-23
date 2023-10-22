@@ -28,7 +28,6 @@ var player1Info = {
         y:0,
     },
     attackDelay: 0,
-    dodgeDelay: 0,
     jumps: jumpCount,
     hp: 100,
 }
@@ -45,7 +44,6 @@ var player2Info = {
         y:0,
     },
     attackDelay: 0,
-    dodgeDelay: 0,
     jumps: jumpCount,
     hp: 100,
 }
