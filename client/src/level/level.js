@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import "./level.css";
+import useSound from 'use-sound';
+
 import sandwich from './ClubSandwich.png';
 import suit from './ClubSuit.png';
 import whoosh from '../sound/Whoosh.mp3';
 import hit from '../sound/WoodHit.mp3';
+import grieg from "../sound/Grieg.mp3";
 
 // TODO: Attack varying damage
 // TODO: Attack knockback
@@ -28,6 +31,10 @@ export default function Level({gameWS, setGameWS, username}){
         attackDelay:100,
     });
 
+    const [play, { stop }] = useSound(
+        grieg,
+        {volume: 1}
+    );
     function playHit() {
         new Audio(hit).play();
     }
@@ -36,15 +43,11 @@ export default function Level({gameWS, setGameWS, username}){
     }
 
     async function move(x, y){
-        console.log(x);
+        play();
         gameWS.send(JSON.stringify({type:"input", username:username, posX:x, posY:y}));
     }
     async function attack(right, attackDelay){
-        console.log(attackDelay);
-        if (p1.attackDelay <= 0) {
-            playWhoosh();
-            playHit();
-        }
+        
         gameWS.send(JSON.stringify({type:"attack", username:username, direction:right}));
     }
 
@@ -81,9 +84,11 @@ export default function Level({gameWS, setGameWS, username}){
             setp2(data.p2);
 
             if(data.p2.health <= 0){
+                stop();
                 window.location.href = 'http://localhost:3000/win';
             }
             if(data.p1.health <= 0){
+                stop();
                 window.location.href = 'http://localhost:3000/lose';
             }
         };
@@ -92,6 +97,10 @@ export default function Level({gameWS, setGameWS, username}){
             handler(event.keyCode);
         });
     }, []);
+
+    if (p1.attackDelay == 99) {
+        playWhoosh();
+    }
 
     var p1sprite = <img src={sandwich}></img>;
     var p2sprite = <img src={suit}></img>;
