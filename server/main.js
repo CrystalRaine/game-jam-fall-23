@@ -1,5 +1,5 @@
 // imports
-const {startGameEndpoints, setupGameWS} = require("./setupEndpoints.js");
+const { setupGameWS } = require("./setupEndpoints.js");
 
 const express = require('express');
 const path = require("path")
@@ -37,7 +37,6 @@ app.use(sessions({
     resave: false 
 }));
 
-startGameEndpoints(app);
 setupGameWS();
 
 // start app

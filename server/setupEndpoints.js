@@ -48,12 +48,6 @@ var player2Info = {
     hp: 100,
 }
 
-function startGameEndpoints(app){
-    // app.get("/test", (req, res)=>{
-    //     res.send("");
-    // });
-}
-
 function setupGameWS(){
     const wss = new WebSocket.Server({ port: 8000 });
 
@@ -99,6 +93,7 @@ function setupGameWS(){
                         
                         player1Info.momentum.x *= 0.99;
                         player1Info.momentum.y *= 0.99;
+
                         player2Info.momentum.x *= 0.99;
                         player2Info.momentum.y *= 0.99;
 
@@ -111,7 +106,7 @@ function setupGameWS(){
                         player2Info.position.y += player2Info.momentum.y;
 
                         if(player1Info.momentum.x > speedCapX){
-                            player1Info.momentum = speedCapX;
+                            player1Info.momentum.x = speedCapX;
                         }
                         if(player1Info.momentum.x < -speedCapX){
                             player1Info.momentum.x = -speedCapX;
@@ -173,6 +168,7 @@ function setupGameWS(){
                                 player2Info.ws.send("missing player");
                             }
                         }
+
                     }, frameTimeMS);
 
                 break;
@@ -211,6 +207,40 @@ function setupGameWS(){
                             }
                         }
                         if(opp.hp <= 0 || player.hp <= 0){
+                            player1Info = {
+                                username: null,
+                                ws: null,
+                                ready: false,
+                                momentum:{
+                                    x: 0,
+                                    y: 0,
+                                },
+                                position:{
+                                    x:0,
+                                    y:0,
+                                },
+                                attackDelay: 0,
+                                dodgeDelay: 0,
+                                jumps: jumpCount,
+                                hp: 100,
+                            };
+                            player2Info = {
+                                username: null,
+                                ws: null,
+                                ready: false,
+                                momentum:{
+                                    x: 0,
+                                    y: 0,
+                                },
+                                position:{
+                                    x:0,
+                                    y:0,
+                                },
+                                attackDelay: 0,
+                                dodgeDelay: 0,
+                                jumps: jumpCount,
+                                hp: 100,
+                            };
                             clearInterval(periodicCall);
                         }
                     }
@@ -266,4 +296,4 @@ function getSendableInfo(player){
 }
 
 
-module.exports = {startGameEndpoints, setupGameWS};
+module.exports = {setupGameWS};
