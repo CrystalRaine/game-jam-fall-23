@@ -10,6 +10,7 @@ import whoosh from '../sound/Whoosh.mp3';
 import hit from '../sound/WoodHit.mp3';
 import jump from '../sound/Jump.mp3';
 import grieg from "../sound/Grieg.mp3";
+import p2death from "../sound/CardDeath.mp3";
 
 // TODO: Attack varying damage
 // TODO: Attack knockback
@@ -32,14 +33,10 @@ export default function Level({gameWS, setGameWS, username}){
         attackDelay:100,
     });
 
-    const [playing, setPlaying] = useState(false);
     const [play, { stop }] = useSound(
         grieg,
         {volume: 1}
     );
-    function playHit() {
-        new Audio(hit).play();
-    }
     function playWhoosh() {
         new Audio(whoosh).play();
     }
@@ -48,7 +45,6 @@ export default function Level({gameWS, setGameWS, username}){
     }
 
     async function move(x, y){
-        
         gameWS.send(JSON.stringify({type:"input", username:username, posX:x, posY:y}));
     }
     async function attack(right, attackDelay){
